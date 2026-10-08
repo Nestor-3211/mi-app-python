@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- script: echo "Iniciando pipeline CI/CD - Nestor"
+  displayName: 'Inicio del pipeline'
+
+- script: |
+    docker build -t mi-app-python:v1 .
+    docker images
+  displayName: 'Build imagen Docker'
+
+- script: |
+    docker run mi-app-python:v1
+  displayName: 'Correr contenedor'
+
+- script: echo "Pipeline completado exitosamente"
+  displayName: 'Fin del pipeline'
